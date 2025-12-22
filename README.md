@@ -1,15 +1,20 @@
 # 🚀 Flask URL Shortener (Deployed on AWS EC2)
 
-A simple and clean **URL Shortener Web Application** built with **Python Flask** and deployed manually on **AWS EC2** using the Free Tier.  
+![CI](https://github.com/Tara-Choudhary/flask-url-shortener/actions/workflows/ci.yml/badge.svg)
+
+
+A simple and clean **URL Shortener Web Application** built with **Python Flask**, initially deployed manually on **AWS EC2 (Free Tier)**, and later enhanced with a **Continuous Integration (CI) pipeline** using **GitHub Actions**.
+
 
 This project demonstrates:
 - Python backend development  
 - Flask web framework  
 - AWS EC2 deployment  
 - Linux server setup  
-- Git & GitHub workflow  
-
-All steps and screenshots are included for learning and portfolio purposes.
+- Git & GitHub workflow
+- Continuous Integration (CI) using GitHub Actions
+- Automated linting and testing
+- Docker image build validation
 
 
 ## 📸 Live Deployment Screenshots
@@ -42,6 +47,14 @@ flask-url-shortener/
 ├── app.py
 ├── urls.json
 ├── requirements.txt
+├── Dockerfile
+│
+├── tests/
+│ └── test_app.py
+│
+├── .github/
+│ └── workflows/
+│   └── ci.yml
 │
 ├── templates/
 │ └── index.html
@@ -50,10 +63,11 @@ flask-url-shortener/
 │ └── style.css
 │
 └── aws-setup/
-└── (AWS screenshots)
+  └── (AWS & CI screenshots)
+
 ```
 
-## 🏛️ Architecture Diagram
+## 🏛️ Architecture Diagram (AWS)
 ```
     ┌───────────────────────────────────────┐
     │             User Browser               │
@@ -78,6 +92,68 @@ flask-url-shortener/
     └───────────────────────────────────────┘
 
 ```
+## 🔁 Continuous Integration (CI) Pipeline
+This project uses GitHub Actions to automate quality checks and Docker build validation before deployment.
+
+On every **push** or **pull request** to the `main` branch, the pipeline automatically:
+
+- 🧪 Sets up a clean Ubuntu runner with **Python 3.10**
+- 📦 Installs dependencies from `requirements.txt`
+- 🔍 Runs **flake8** for Python code quality (PEP8 compliance)
+- 🧪 Runs **pytest** to validate application functionality
+- 🐳 Builds a **Docker image** to ensure the app can be containerized successfully
+
+This ensures only **clean, tested, and buildable code** passes the pipeline.
+
+This CI pipeline acts as a quality gate, preventing broken or non-containerizable code from reaching deployment.
+
+
+> ⚠️ Note: This CI pipeline performs code quality checks, testing, and Docker build validation only. Deployment to AWS EC2 is currently done manually and is not automated via CI/CD.
+
+
+
+## ⚙️ CI Workflow File
+```
+.github/workflows/ci.yml
+```
+
+### 🧪 Automated Testing
+
+Basic automated testing is implemented using **pytest**:
+
+```
+tests/
+└── test_app.py
+```
+
+The test verifies:
+- Flask app loads correctly
+- Home route (`/`) responds with HTTP `200 OK`
+
+## 🐳 Docker Integration (CI Build Validation)
+
+The application is containerized using Docker.
+
+During CI:
+- The Docker image is **built only for validation**
+- No image is pushed to Docker Hub
+- No deployment occurs at this stage
+
+This validates Dockerfile correctness and container readiness.
+
+Docker is currently used for build validation in CI and prepares the application for future container-based deployments.
+
+
+### 📊 CI Pipeline Execution (GitHub Actions)
+
+Below is a screenshot of GitHub Actions workflow runs showing:
+- Initial CI failures
+- Debugging and fixes
+- Final successful pipeline execution
+
+This reflects a **real-world DevOps workflow**.
+
+![CI Pipeline Runs](./aws-setup/ci-workflow-runs.png)
 
 ## 🖥️ Run Locally (Development Setup)
 
@@ -165,7 +241,7 @@ Running on http://0.0.0.0:5000
 ### Step 7: Open app in browser
 
 ```
-http://<EC@-PUBLIC-IP>:5000
+http://<EC2-PUBLIC-IP>:5000
 ```
 
 <!-- ## Tech Stack
