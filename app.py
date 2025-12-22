@@ -13,14 +13,17 @@ def load_urls():
         return {}
     with open(URLS_FILE, "r") as file:
         return json.load(file)
+        
 
 def save_urls(urls):
     with open(URLS_FILE, "w") as file:
         json.dump(urls, file, indent=4)
+        
 
 def generate_short_code(length=6):
     chars = string.ascii_letters + string.digits
     return ''.join(random.choice(chars) for _ in range(length))
+    
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -40,6 +43,7 @@ def index():
         return render_template("index.html", short_url=short_code, urls=urls)
 
     return render_template("index.html", urls=urls)
+    
 
 @app.route("/<short_code>")
 def redirect_url(short_code):
@@ -50,6 +54,7 @@ def redirect_url(short_code):
         return redirect(long_url)
     else:
         abort(404)
+        
 
 @app.route("/delete/<short_code>")
 def delete_url(short_code):
@@ -58,6 +63,8 @@ def delete_url(short_code):
         del urls[short_code]
         save_urls(urls)
     return redirect("/")
+
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
