@@ -210,8 +210,8 @@ ssh -i flask-key.pem ec2-user@<YOUR_PUBLIC_IP>
 ### Step 3: Install Python, pip, Git 
 
 ```
-sudo yum update -y
-sudo yum install python3 python3-pip git -y
+sudo apt update -y
+sudo apt install python3 python3-pip git -y
 ```
 
 ### Step 4: Clone repository
