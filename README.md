@@ -6,7 +6,7 @@
 A simple and clean **URL Shortener Web Application** built with **Python Flask**, initially deployed manually on **AWS EC2 (Free Tier)**, and later enhanced with a **Continuous Integration (CI) pipeline** using **GitHub Actions**.
 
 
-This project demonstrates:
+### This project demonstrates:
 - Python backend development  
 - Flask web framework  
 - AWS EC2 deployment  
@@ -16,6 +16,26 @@ This project demonstrates:
 - Automated linting and testing
 - Docker image build validation
 
+
+## 🛠 Application / Production Support Documentation
+
+In addition to development and CI, this project was operated as a **production-style application**
+on AWS EC2 with responsibilities similar to an **Application / Production Support Engineer**.
+
+The following support and operations work was performed:
+
+- Dedicated IAM user with least-privilege access
+- EC2 provisioning and secure SSH access
+- Application health checks and troubleshooting
+- Network and port validation
+- Conversion of the Flask app into a systemd-managed service
+- Automatic restart and startup on reboot
+- Log monitoring using journalctl
+- Incident-style debugging and validation
+
+📄 **Detailed support documentation and evidence** can be found here:
+
+👉 [`aws-setup/Support/README.md`](aws-setup/Support/README.md)
 
 ## 📸 Live Deployment Screenshots
 
