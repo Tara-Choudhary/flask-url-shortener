@@ -35,7 +35,7 @@ The following support and operations work was performed:
 
 📄 **Detailed support documentation and evidence** can be found here:
 
-👉 [`aws-setup/Support/README.md`](aws-setup/Support/README.md)
+👉 [`/Support/README.md`](/Support/README.md)
 
 ## 📸 Live Deployment Screenshots
 
